@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Team B  | KNN Model</title>
+</head>
+
+<body class="container mt-3">
+    <!--TITLE-->
+    <div class="mb-3">
+        <h1>SongPredict Website</h1>
+        <h4 class="text-success">The Future of Music</h4>
+    </div>
+
+<form class="max-w-sm">
+    <!--INPUTS-->
+    <div class="row g-3">
+    <div class="mb-3 col">
+        <label for="duration" class="form-label">Duration</label>
+        <input type="text" class="form-control" id="duration" placeholder="How long you prefer?">
+    </div>
+      <div class="mb-3 col">
+        <label for="acousticness" class="form-label">Acousticness</label>
+        <input type="text" class="form-control" id="acousticness">
+    </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="speechiness" class="form-label">Speechiness</label>
+        <input type="text" class="form-control" id="speechiness">
+    </div>
+
+    <div class="row g-3">
+        <div class="col">
+    <div class="col-12 mb-3">
+        <label class="form-label" for="Acoustic">Acoustic</label>
+        <select class="form-select" id="Acoustic">
+          <option selected>Choose Acoustic type</option>
+          <option value="acoustic_vector_0">Acoustic Vector 0</option>
+          <option value="acoustic_vector_2">Acoustic Vector 2</option>
+          <option value="acoustic_vector_4">Acoustic Vector 4</option>
+          <option value="acoustic_vector_6">Acoustic Vector 6</option>
+        </select>
+    </div>
+</div>
+
+    <div class="col">
+    <div class="col-12 mb-3">
+        <label class="form-label" for="Acoustic_Vector">Acoustic Vector Pca</label>
+        <select class="form-select" id="Acoustic_Vector">
+          <option selected>Choose Acoustic Vector Pca</option>
+          <option value="acoustic_vector_pca1">Acoustic Vector Pca1</option>
+          <option value="acoustic_vector_pca3">Acoustic Vector Pca3</option>
+        </select>
+    </div>
+</div>
+</div>
+
+<div class="row g-3">
+    <div class="mb-3 col">
+        <label for="session_position" class="form-label">Session Position</label>
+        <input type="text" class="form-control" id="session_position">
+    </div>
+      <div class="mb-3 col">
+        <label for="session_length" class="form-label">Session Length</label>
+        <input type="text" class="form-control" id="session_length">
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="mb-3 col">
+        <label for="context_switch" class="form-label">Context Switch</label>
+        <input type="text" class="form-control" id="context_switch">
+    </div>
+
+    <div class="mb-3 col">
+        <label for="session_length" class="form-label">Context Type</label>
+        <input type="text" class="form-control" id="context_type">
+      </div>
+    </div>
+  
+    <!--True or false-->
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Pause:</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="no_pause_before_play" value="option1">
+            <label class="form-check-label" for="no_pause_before_play">
+                No Pause Before Play
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="short_pause_before_play" value="option2">
+            <label class="form-check-label" for="short_pause_before_play">
+                Short Pause Before Play
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" id="long_pause_before_play" value="option3">
+            <label class="form-check-label" for="long_pause_before_play">
+                Long Pause Before Play
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Hist user behavior:</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="hist_user_behavior_is_shuffle" value="option1">
+            <label class="form-check-label" for="hist_user_behavior_is_shuffle">
+                Hist User Behavior Is Shuffle
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="short_pause_before_play" value="option2">
+            <label class="form-check-label" for="short_pause_before_play">
+                Hist User Behavior Reason Start
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" id="hist_user_behavior_reason_end" value="option3">
+            <label class="form-check-label" for="hist_user_behavior_reason_end">
+                Hist User Behavior Reason End
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="col-12 mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="premium">
+          <label class="form-check-label" for="premium">
+            Premium
+          </label>
+        </div>
+      </div>
+      
+
+    <div class="col-12 mb-4">
+        <button type="submit" class="btn btn-success" id="liveToastBtn">Predict Now!</button>
+    </div>
+</form>
+
+
+
+<!--OUTPUT-->
+    <div>
+    <h2 class="mt-4">Result</h2>
+    "{%if prediction%}"
+        <p>{{precition}}</p>
+    "{%endif%}"
+    </div>
+
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

@@ -13,20 +13,20 @@ Results Display: The prediction result ("skipped track" or "Track Not Skipped") 
 
 
 # Technologies Used
-Backend: Flask (Python)
-Machine Learning: KNN (K-Nearest Neighbors) model, pickled for easy deployment.
-Frontend: HTML, CSS (Bootstrap)
-Model Serialization: Pickle (for saving and loading the trained machine learning model)
+1. Backend: Flask (Python)
+2. Machine Learning: KNN (K-Nearest Neighbors) model, pickled for easy deployment.
+3. Frontend: HTML, CSS (Bootstrap)
+4. Model Serialization: Pickle (for saving and loading the trained machine learning model)
 
 # Project Setup Prerequisites
 Before running the project, make sure you have the following installed:
 
-Python 3.8
-Flask
-Scikit-learn
-Numpy
-Pickle
-HTML,CSS (for frontend styling)
+1. Python 3.8
+2. Flask
+3. Scikit-learn
+4. Numpy
+5. Pickle
+6. HTML,CSS (for frontend styling)
 
 # Using the App
 Enter the song attributes (duration, acousticness, speechiness, etc.) in the form.
